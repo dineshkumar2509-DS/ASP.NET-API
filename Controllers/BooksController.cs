@@ -16,10 +16,12 @@ namespace libraryManagement.Controllers
     {
 
         private readonly ITblBook _tblBook;
+        private readonly IBookCopy _bookCopy;
         private readonly IMapper _mapper;
-        public BooksController(ITblBook tblBook, IMapper mapper)
+        public BooksController(ITblBook tblBook, IMapper mapper,IBookCopy bookCopy)
         {
             this._tblBook = tblBook;
+            this._bookCopy = bookCopy;
             this._mapper = mapper;
         }
 
@@ -80,6 +82,19 @@ namespace libraryManagement.Controllers
             catch (System.Exception)
             {
 
+                throw;
+            }
+        }
+
+        [HttpPost("/book")]
+        public IActionResult addBookWithCopy(BookCopyDTO bookCopy){
+            try
+            {
+                return Ok(this._bookCopy.InsertBookWithCopy(bookCopy));
+            }
+            catch (System.Exception)
+            {
+                
                 throw;
             }
         }

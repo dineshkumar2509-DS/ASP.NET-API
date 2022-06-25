@@ -43,6 +43,7 @@ namespace libraryManagement
             services.AddDbContext<LibraryContext>(options=>options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddScoped(typeof(IGenericRepo<>),typeof(GenericRepo<>));
             services.AddScoped<libraryManagement.Repository.ITblBook,libraryManagement.Repository.TblBook>();
+            services.AddScoped<IBookCopy,BookCopy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
